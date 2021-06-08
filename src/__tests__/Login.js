@@ -154,7 +154,7 @@ describe("Given that I am a user on login page", () => {
 
   describe("When I do fill fields in correct format and I click on admin button Login In", () => {
     test("Then I should be identified as an HR admin in app", () => {
-      document.body.innerHTML = LoginUI()
+      document.body.innerHTML = LoginUI();
       const inputData = {
         type: "Admin",
         email: "johndoe@email.com",
