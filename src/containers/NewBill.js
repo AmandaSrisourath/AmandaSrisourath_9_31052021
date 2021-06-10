@@ -1,4 +1,3 @@
-
 import { ROUTES_PATH } from '../constants/routes.js'
 import Logout from "./Logout.js"
 
@@ -19,15 +18,22 @@ export default class NewBill {
     const file = this.document.querySelector(`input[data-testid="file"]`).files[0]
     const filePath = e.target.value.split(/\\/g)
     const fileName = filePath[filePath.length-1]
-    // this.firestore
-    //   .storage
-    //   .ref(`justificatifs/${fileName}`)
-    //   .put(file)
-    //   .then(snapshot => snapshot.ref.getDownloadURL())
-    //   .then(url => {
-    //     this.fileUrl = url
-    //     this.fileName = fileName
-    //   })
+    // prevent entry of different extension than jpg, png, jpeg
+    const extension = fileName.match(/[^.]+/g)
+    const fileExtension = extension[extension.length-1]
+    if (fileExtension === "jpg" || fileExtension === "png" || fileExtension === "jpeg") {
+      this.firestore
+          .storage
+          .ref(`justificatifs/${fileName}`)
+          .put(file)
+          .then(snapshot => snapshot.ref.getDownloadURL())
+          .then(url => {
+            this.fileUrl = url
+            this.fileName = fileName
+          })
+    } else {
+      this.document.querySelector(`input[data-testid="file"]`).value = ""
+    }
   }
   handleSubmit = e => {
     e.preventDefault()

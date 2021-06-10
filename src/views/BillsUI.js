@@ -19,6 +19,7 @@ const row = (bill) => {
     `)
   }
 
+// order bills from earliest to latest
 const rows = (data) => {
   return (data && data.length) ?
       data

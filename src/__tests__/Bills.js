@@ -8,12 +8,6 @@ describe("Given I am connected as an employee", () => {
       const html = BillsUI({ data: []})
       document.body.innerHTML = html
       //to-do write expect expression
-      // const layoutIcon1 = screen.getByTestId("icon-window")
-      // console.log(layoutIcon1);
-      // const activeIcon = document.querySelectorAll(".active-icon");
-      // console.log(activeIcon);
-      // expect(layoutIcon1).toHaveClass("activeIcon");
-      // expect(layoutIcon1.classList.contains('activeIcon')).toBe(true)
     })
     test("Then bills should be ordered from earliest to latest", () => {
       const html = BillsUI({ data: bills })
