@@ -58,7 +58,7 @@ describe("Given I am connected as an employee", () => {
       userEvent.click(buttonNewBill);
       expect(screen.queryByTestId('form-new-bill')).toBeTruthy();
     })
-    
+
     test("Then I click on iconEye and a modal should be open", () => {
       const html = BillsUI({ data: bills });
       document.body.innerHTML = html;

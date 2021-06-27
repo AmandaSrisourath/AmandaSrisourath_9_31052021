@@ -19,8 +19,7 @@ export default class NewBill {
     const filePath = e.target.value.split(/\\/g)
     const fileName = filePath[filePath.length-1]
     // prevent entry of different extension than jpg, png, jpeg
-    const extension = fileName.match(/[^.]+/g)
-    const fileExtension = extension[extension.length-1]
+    const fileExtension = fileName.split('.').pop();
     if (fileExtension === "jpg" || fileExtension === "png" || fileExtension === "jpeg") {
       this.firestore
           .storage
