@@ -72,4 +72,3 @@ describe('Given I am connected as an Admin and I am on Dashboard Page', () => {
     })
   })
 })
-
