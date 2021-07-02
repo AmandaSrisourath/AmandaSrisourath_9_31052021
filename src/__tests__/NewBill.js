@@ -6,6 +6,8 @@ import { bills } from "../fixtures/bills.js"
 import firestore from "../app/Firestore";
 import {ROUTES} from "../constants/routes";
 import userEvent from "@testing-library/user-event";
+import firebase from "../__mocks__/firebase";
+import DashboardUI from "../views/DashboardUI";
 
 describe("Given I am connected as an employee", () => {
   describe("When I am on NewBill Page and I fill the form", () => {
@@ -62,6 +64,34 @@ describe("Given I am connected as an employee", () => {
 
       expect(screen.queryByText('The Goldy')).toBeTruthy();
       expect(screen.queryByText('Mes notes de frais')).toBeTruthy();
+    })
+  })
+})
+
+// integration test POST
+describe("Given I am a user connected as Employee", () => {
+  describe("When I navigate to bills page", () => {
+    test("fetches bills from mock API GET", async () => {
+      const postSpy = jest.spyOn(firebase, "post");
+      const bill = {
+        "id": "47qAXb6fIm2zOKkLzMro",
+        "vat": "80",
+        "fileUrl": "https://firebasestorage.googleapis.com/v0/b/billable-677b6.a…f-1.jpg?alt=media&token=c1640e12-a24b-4b11-ae52-529112e9602a",
+        "status": "pending",
+        "type": "Hôtel et logement",
+        "commentary": "séminaire billed",
+        "name": "encore",
+        "fileName": "preview-facture-free-201801-pdf-1.jpg",
+        "date": "2004-04-04",
+        "amount": 400,
+        "commentAdmin": "ok",
+        "email": "a@a",
+        "pct": 20
+      }
+      const billCreated = await firebase.post(bill);
+
+      expect(postSpy).toHaveBeenCalledTimes(1);
+      expect(billCreated).toMatchObject(bill);
     })
   })
 })

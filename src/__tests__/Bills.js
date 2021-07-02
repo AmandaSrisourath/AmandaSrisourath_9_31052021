@@ -71,6 +71,15 @@ describe("Given I am connected as an employee", () => {
       userEvent.click(iconEye);
       expect($.fn.modal).toHaveBeenCalled();
     })
+
+    test("Then when there is an error, it is displayed", () => {
+      const html = BillsUI({ error : "error message" });
+      document.body.innerHTML = html;
+
+      const errorPage = screen.getAllByText("error message")
+
+      expect(errorPage).toBeTruthy();
+    })
   })
 })
 
